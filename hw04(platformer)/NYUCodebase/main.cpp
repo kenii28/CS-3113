@@ -156,20 +156,6 @@ public:
 		sprite.Draw();
 	}
 
-	void Updated(float elapsed) {
-		if (!isStatic) {
-			velocity.x = lerp(velocity.x, 0.0f, elapsed * friction.x);
-			velocity.y = lerp(velocity.y, 0.0f, elapsed * friction.y);
-			velocity.x += Acceleration.x * elapsed;
-			velocity.y += Acceleration.y * elapsed;
-			position.x += velocity.x * elapsed;
-			dimension.l += velocity.x * elapsed;
-			dimension.r += velocity.x * elapsed;
-			position.y += velocity.y * elapsed;
-			dimension.b += velocity.y * elapsed;
-			dimension.t += velocity.y * elapsed;
-		}
-	}
 
 	void UpdateX(float elapsed) {
 		if (!isStatic) {
