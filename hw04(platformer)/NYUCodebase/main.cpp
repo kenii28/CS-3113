@@ -184,10 +184,11 @@ public:
 	}
 	void UpdateY(float elapsed) {
 		if (!isStatic) {
-			velocity.y += Acceleration.y * elapsed;
-			position.y += velocity.y * elapsed;
-			dimension.t += velocity.y * elapsed;
-			dimension.b += velocity.y * elapsed;
+			velocity.x = lerp(velocity.x, 0.0f, elapsed * friction.x);
+			velocity.x += Acceleration.x * elapsed;
+			position.x += velocity.x * elapsed;
+			dimension.l += velocity.x * elapsed;
+			dimension.r += velocity.x * elapsed;
 		}
 	}
 
