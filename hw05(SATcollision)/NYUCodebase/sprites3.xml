@@ -1,0 +1,3 @@
+<TextureAtlas imagePath="sprites3.png">
+	<SubTexture name="Dark_Dragoon.png" x="0" y="0" width="457" height="436"/>
+</TextureAtlas>
