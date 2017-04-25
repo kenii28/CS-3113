@@ -19,6 +19,7 @@ Space Invaders
 #include "Matrix.h"
 #include <vector>
 #include <iostream>
+#include <SDL_mixer.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -50,6 +51,7 @@ float lastaShot = 0.0f;
 float lastpShot = 0.0f;
 int state = 0;
 bool playing = true;
+
 
 
 GLuint LoadTexture(const char *filePath) {
@@ -407,6 +409,15 @@ int main(int argc, char *argv[])
 		aliens.push_back(enemy);
 	}
 
+	int Mix_OpenAudio(int frequency, Uint16 format, int channels, int chunksize);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+	Mix_Chunk *playershoot;
+	Mix_Chunk *playermove;
+	playershoot = Mix_LoadWAV("shoot.wav");
+	playermove = Mix_LoadWAV("playermove.wav");
+	Mix_Music *music;
+	music = Mix_LoadMUS("music.mp3");
+
 
 	while (!done) {
 
@@ -418,16 +429,20 @@ int main(int argc, char *argv[])
 				if (event.key.keysym.scancode == SDL_SCANCODE_SPACE) {
 					if (state == MENU) {
 						state = GAME;
+						Mix_PlayMusic(music, -1);
 					}
 					else {
 						shoot = true;
+						Mix_PlayChannel(-1, playershoot, 0);
 					}
 				}
 				if (event.key.keysym.scancode == SDL_SCANCODE_LEFT) {
 					moveL = true;
+					Mix_PlayChannel(-1, playermove, 0);
 				}
 				else if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT) {
 					moveR = true;
+					Mix_PlayChannel(-1, playermove, 0);
 				}
 			}
 			if (event.type == SDL_KEYUP) {
@@ -456,7 +471,10 @@ int main(int argc, char *argv[])
 		}
 		
 	}
-	
+
+	Mix_FreeChunk(playershoot);
+	Mix_FreeChunk(playermove);
+	Mix_FreeMusic(music);
 
 	SDL_Quit();
 	return 0;
