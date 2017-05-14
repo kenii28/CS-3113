@@ -1,0 +1,6 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="dragon.png" x="0" y="0" width="498" height="314"/>
+	<SubTexture name="enemydragon.png" x="0" y="316" width="475" height="242"/>
+	<SubTexture name="enemyfireball.png" x="362" y="560" width="258" height="237"/>
+	<SubTexture name="fireball.png" x="0" y="560" width="360" height="387"/>
+</TextureAtlas>
